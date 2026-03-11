@@ -28,7 +28,7 @@ export default function Hero() {
       {/* Image */}
       <div className="relative w-full h-[400px]">
         <Image
-          src="/products/cake1.jpg"
+          src="/products/cake1 (5).png"
           alt="cake"
           fill
           className="object-cover rounded-xl"

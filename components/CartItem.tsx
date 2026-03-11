@@ -5,11 +5,11 @@ import { Trash2 } from "lucide-react";
 
 export default function CartItem() {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-8">
 
-      <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+      <div className="relative w-[218px] h-[200px] rounded-lg overflow-hidden">
         <Image
-          src="/products/cake1.jpg"
+          src="/products/cake1 (3).png"
           alt="cake"
           fill
           className="object-cover"

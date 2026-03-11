@@ -3,7 +3,7 @@ import { Instagram, Facebook, Twitter, Send } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f4dede] mt-20">
+    <footer className="bg-[#FFD2F5]/55 mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
 
         {/* Brand */}
@@ -75,7 +75,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="text-center text-xs text-gray-700 pb-6">
+      <div className="text-center text-xs text-[#E50A81] pb-6">
         © 2025 Vanilla Bakery — Baked with love in Every Layer 🍰
       </div>
     </footer>

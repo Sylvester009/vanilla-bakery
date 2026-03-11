@@ -22,7 +22,7 @@ export default function CartDrawer({
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[420px] bg-white z-50 shadow-lg transform transition-transform duration-300
+        className={`fixed top-0 right-0 h-full w-[480px] sm:w-[683px] bg-white z-50 shadow-lg transform transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="p-6 h-full flex flex-col">
@@ -45,15 +45,15 @@ export default function CartDrawer({
           </div>
 
           {/* Buttons */}
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col items-center">
 
-            <button className="w-full bg-pink-500 text-white py-3 rounded-lg">
+            <button className="w-[437px] mx-auto bg-[#FF80E3] text-black border border-[#FF80E3] py-3 rounded-lg">
               Proceed to check out
             </button>
 
             <button
               onClick={closeCart}
-              className="w-full border py-3 rounded-lg"
+              className="w-[437px] mx-auto border py-3 rounded-lg"
             >
               Continue Shopping
             </button>

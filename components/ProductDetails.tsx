@@ -34,13 +34,13 @@ export default function ProductDetails({ product }: { product: Product }) {
       {/* RIGHT CONTENT */}
       <div>
 
-        <h1 className="text-3xl font-bold text-pink-600 mb-6">
+        <h1 className="text-[36px] font-normal leading-15 text-[#E50A81] mb-6 heading">
           {product.name.toUpperCase()}
         </h1>
 
-        <h3 className="font-semibold mb-2">Description</h3>
+        <h3 className="font-medium mb-2 text-[20px] text-black">Description</h3>
 
-        <p className="text-gray-600 mb-6 leading-relaxed">
+        <p className="text-[#666666] mb-6 leading-relaxed">
           {product.description}
         </p>
 
@@ -50,7 +50,7 @@ export default function ProductDetails({ product }: { product: Product }) {
             Size <span className="text-red-500">*</span>
           </label>
 
-          <select className="w-full border rounded-lg p-3">
+          <select className="w-full border rounded-lg p-3 border-[#66666680] focus-[#66666680]">
             <option>Select</option>
             <option>Small</option>
             <option>Medium</option>
@@ -64,7 +64,7 @@ export default function ProductDetails({ product }: { product: Product }) {
             Layer <span className="text-red-500">*</span>
           </label>
 
-          <select className="w-full border rounded-lg p-3">
+          <select className="w-full border rounded-lg p-3 border-[#66666680] focus-[#66666680]">
             <option>Select</option>
             <option>1 Layer</option>
             <option>2 Layers</option>
@@ -81,18 +81,18 @@ export default function ProductDetails({ product }: { product: Product }) {
           <div className="flex items-center gap-3">
             <button
               onClick={decrease}
-              className="border px-4 py-1 rounded"
+              className="border px-4 py-1 rounded border-[#66666680] focus-[#66666680]"
             >
               -
             </button>
 
-            <span className="border px-6 py-1 rounded">
+            <span className="border px-6 py-1 rounded border-[#66666680] focus-[#66666680]">
               {quantity}
             </span>
 
             <button
               onClick={increase}
-              className="border px-4 py-1 rounded"
+              className="border px-4 py-1 rounded border-[#66666680] focus-[#66666680]"
             >
               +
             </button>
@@ -107,14 +107,14 @@ export default function ProductDetails({ product }: { product: Product }) {
 
           <textarea
             rows={4}
-            className="w-full border rounded-lg p-3"
+            className="w-full border rounded-lg p-3 border-[#66666680] focus-[#66666680]"
           />
         </div>
 
         {/* BUTTONS */}
         <div className="flex flex-col gap-4">
 
-          <button className="bg-linear-to-r from-pink-500 to-pink-400 text-white py-3 rounded-lg font-medium" onClick={openCart}>
+          <button className="bg-[#FF80E3] text-black border border-[#FF80E3] py-3 rounded-lg font-medium" onClick={openCart}>
             Check Out
           </button>
 
