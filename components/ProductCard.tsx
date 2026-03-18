@@ -1,4 +1,4 @@
-import { pacifico } from "@/app/layout";
+import { pacifico } from "@/app/fonts";
 import Image from "next/image";
 import Link from "next/link";
 

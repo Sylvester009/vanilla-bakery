@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Search, ShoppingCart } from "lucide-react";
 import { useCart } from "./CartProvider";
 import Image from "next/image";
+import Button from "./molecules/Button";
 
 export default function Header() {
     const { openCart } = useCart();
@@ -31,7 +32,12 @@ export default function Header() {
         <div className="flex items-center gap-5 text-gray-700 ml-auto">
           <Search className="w-5 h-5 cursor-pointer" />
           <ShoppingCart className="w-5 h-5 cursor-pointer mr-20 sm:mr-auto" onClick={openCart}/>
+          <Link href="/admin">
+              <Button variant="outline" className="px-2 py-1 border text-sm mx-4 hover:text-white hover:bg-pink-500  hover:border-white transition-colors ease-in">Admin</Button>
+          </Link>
         </div>
+
+        
 
       </div>
     </header>
