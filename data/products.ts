@@ -86,27 +86,93 @@ export const products: Product[] = [
     }
 ];
 
+export interface TypeFilter {
+  id: string;
+  label: string;
+}
+
 export interface CategoryFilter {
     id: string;
     label: string;
-    category: string | null;
+    types: TypeFilter[];
 }
 
 export const categoryFilters: CategoryFilter[] = [
-    { id: "all", label: "All Items", category: null },
-    { id: "macarons", label: "Macarons", category: "macarons" },
-    { id: "tarts", label: "Tarts", category: "tarts" },
-    { id: "cakes", label: "Cakes", category: "cakes" }
+  {
+    id: "all",
+    label: "All Items",
+    types: [],
+  },
+
+  {
+    id: "cakes",
+    label: "Cakes",
+    types: [
+      { id: "birthday", label: "Birthday Cakes" },
+      { id: "wedding", label: "Wedding Cakes" },
+      { id: "chocolate", label: "Chocolate Cakes" },
+      { id: "fruit", label: "Fruit Cakes" },
+      { id: "custom", label: "Custom Cakes" },
+    ],
+  },
+
+  {
+    id: "cupcakes",
+    label: "Cupcakes",
+    types: [
+      { id: "vanilla", label: "Vanilla Cupcakes" },
+      { id: "chocolate", label: "Chocolate Cupcakes" },
+      { id: "filled", label: "Filled Cupcakes" },
+      { id: "mini", label: "Mini Cupcakes" },
+    ],
+  },
+
+  {
+    id: "pastries",
+    label: "Pastries",
+    types: [
+      { id: "croissant", label: "Croissants" },
+      { id: "danish", label: "Danish Pastries" },
+      { id: "puff", label: "Puff Pastries" },
+    ],
+  },
+
+  {
+    id: "cookies",
+    label: "Cookies",
+    types: [
+      { id: "chocolate-chip", label: "Chocolate Chip" },
+      { id: "oatmeal", label: "Oatmeal Cookies" },
+      { id: "shortbread", label: "Shortbread" },
+    ],
+  },
+
+  {
+    id: "bread",
+    label: "Bread & Loaves",
+    types: [
+      { id: "white", label: "White Bread" },
+      { id: "whole-wheat", label: "Whole Wheat" },
+      { id: "sourdough", label: "Sourdough" },
+    ],
+  },
+
+  {
+    id: "tarts",
+    label: "Tarts",
+    types: [
+      { id: "fruit", label: "Fruit Tarts" },
+      { id: "chocolate", label: "Chocolate Tarts" },
+    ],
+  },
+
+  {
+    id: "macarons",
+    label: "Macarons",
+    types: [
+      { id: "assorted", label: "Assorted Packs" },
+      { id: "single-flavor", label: "Single Flavor" },
+    ],
+  },
 ];
 
-export interface TypeFilter {
-    id: string;
-    label: string;
-    value: string;
-}
-
-export const typeFilters: TypeFilter[] = [
-    { id: "gluten-free", label: "Gluten Free", value: "gluten-free" },
-    { id: "vegan", label: "Vegan Friendly", value: "vegan" },
-    { id: "nut-free", label: "Nut Free", value: "nut-free" }
-];

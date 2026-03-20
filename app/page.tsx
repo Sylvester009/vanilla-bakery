@@ -27,13 +27,8 @@ export default function Home() {
               delivered from our boutique kitchen to your celebrations.
             </p>
             <div className="flex flex-wrap gap-6">
-              <Link href="/checkout">
-                <button className="bg-linear-to-br from-[#b40064] to-[#e1017e] text-[#ffffff] px-10 py-5 rounded-xl font-label text-sm font-bold tracking-widest uppercase shadow-lg shadow-[#b40064]/20 hover:scale-105 transition-transform">
-                  Order Now
-                </button>
-              </Link>
               <Link href="/shop">
-                <button className="px-10 py-5 text-[#3e001f] font-label text-sm font-bold tracking-widest uppercase border-b-2 border-[#e2bdc7] hover:border-[#b40064] transition-colors">
+                <button className="bg-linear-to-br from-[#b40064] to-[#e1017e] text-[#ffffff] px-10 py-5 rounded-xl font-label text-sm font-bold tracking-widest uppercase shadow-lg shadow-[#b40064]/20 hover:scale-105 transition-transform">
                   View Menu
                 </button>
               </Link>
@@ -118,9 +113,11 @@ export default function Home() {
                   morning.
                 </p>
               </div>
-              <button className="text-[#b40064] font-bold font-label uppercase tracking-widest border-b-2 border-[#b40064] pb-1">
-                Shop All Products
-              </button>
+              <Link href="/shop">
+                <button className="hidden md:block text-[#b40064] font-bold font-label uppercase tracking-widest border-b-2 border-[#b40064] pb-1">
+                  Shop All Products
+                </button>
+              </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Product Card 1 */}
