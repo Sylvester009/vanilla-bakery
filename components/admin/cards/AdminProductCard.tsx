@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { pacifico } from "@/app/fonts";
 import Button from "@/components/molecules/Button";
+import { Edit2, Trash2Icon } from "lucide-react";
 
 interface AdminCardProps {
   id: string;
@@ -35,17 +36,19 @@ export default function AdminProductCard( {id,
       <div className="flex gap-2 mt-auto pt-4">
         <Button
           variant="solid" 
-          className="flex-1 py-1 text-xs" 
+          className="flex-1 py-1 text-xs bg-gray-200 text-blue-950 border border-pink-100  hover:bg-gray-300 space-x-2" 
+          icon={Edit2}
+          iconSize={15}
           onClick={() => onEdit()}
         >
           Edit
         </Button>
         <Button 
           variant="outline" 
-          className="flex-1 py-1 text-xs" 
+          className="py-1 px-3 border border-pink-200 text-xs" 
           onClick={() => onDelete()}
         >
-          Delete
+          <Trash2Icon size={18}/>
         </Button>
       </div>
     </div>
