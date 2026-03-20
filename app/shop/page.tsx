@@ -1,10 +1,21 @@
 'use client';
 
 import {useCart} from '@/contexts/CartContext';
-import {categoryFilters, Product, products, typeFilters} from '@/data/products';
+import {categoryFilters, Product, products} from '@/data/products';
 import Link from 'next/link';
+import {useState} from 'react';
 
 export default function Shop() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeTypes, setActiveTypes] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const isSearching = searchQuery.trim() !== '';
+  const isFiltering = activeTypes.length > 0 || activeCategory !== 'all';
+
+  const selectedCategory = categoryFilters.find(c => c.id === activeCategory);
+  const types = selectedCategory?.types || [];
+
   const {addToCart} = useCart();
 
   const handleAddToCart = (product: Product) => {
@@ -17,11 +28,28 @@ export default function Shop() {
       slug: product.slug,
     });
   };
+
+  const filteredProducts = products.filter(product => {
+    const matchCategory =
+      activeCategory === 'all' || product.category === activeCategory;
+
+    const matchTypes =
+      activeTypes.length === 0 ||
+      activeTypes.every(type => product.type?.includes(type));
+
+    const matchSearch =
+      searchQuery.trim() === '' ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchCategory && matchTypes && matchSearch;
+  });
+
   return (
     <div className="bg-[#faf9f9] text-[#1a1c1c] selection:bg-[#ffd9e3] selection:text-[#3e001f]">
       <main className="pt-32 pb-20 px-8 max-w-screen-2xl mx-auto">
         {/* Header Section */}
-        <header className="mb-16">
+        <header className="mb-16 ml-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#1a1c1c] mb-4">
@@ -37,21 +65,27 @@ export default function Shop() {
               {categoryFilters.map(filter => (
                 <button
                   key={filter.id}
+                  onClick={() => {
+                    setActiveCategory(filter.id);
+                    setActiveTypes([]);
+                  }}
                   className={`${
-                    filter.category === null
-                      ? 'bg-[#b40064] text-[#ffffff]'
+                    activeCategory === filter.id
+                      ? 'bg-[#b40064] text-white'
                       : 'bg-[#f7dcdf] text-[#735f62] hover:bg-[#e2bdc7]/20'
                   } px-6 py-2 rounded-full text-sm font-label tracking-wide transition-colors`}
                 >
                   {filter.label}
                 </button>
               ))}
-              <div className="hidden lg:flex items-center bg-[#e9e8e8] rounded-full px-4 py-2 w-64 focus-within:bg-[#ffffff] transition-all group">
+              <div className="hidden lg:flex items-center bg-[#e9e8e8] rounded-full px-4 py-2 w-64 focus-within:bg-[#ffffff] transition-all group mr-auto">
                 <span className="material-symbols-outlined text-[#5a3f48] text-sm">
                   search
                 </span>
                 <input
-                  className="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-[#5a3f48]/60"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className="bg-transparent border-none outline-none focus:outline-none focus:ring-0 w-full text-[15px] font-body tracking-wide text-[#3e001f] placeholder:text-[#5a3f48]/50"
                   placeholder="Search pastries..."
                   type="text"
                 />
@@ -64,21 +98,32 @@ export default function Shop() {
           {/* Sidebar Filters */}
           <aside className="lg:col-span-3 space-y-10 hidden lg:block">
             <div>
-              <h3 className="text-[#1a1c1c] font-headline text-xl mb-6">
-                Types
-              </h3>
+              {types?.length > 0 && (
+                <h3 className="text-[#1a1c1c] font-headline text-xl mb-6">
+                  Types
+                </h3>
+              )}
               <div className="space-y-4">
-                {typeFilters.map(filter => (
+                {types.map(type => (
                   <label
-                    key={filter.id}
+                    key={type.id}
                     className="flex items-center gap-3 group cursor-pointer"
                   >
                     <input
-                      className="rounded-sm border-[#e2bdc7] text-[#b40064] focus:ring-[#b40064]/20 w-5 h-5 transition-colors"
                       type="checkbox"
+                      checked={activeTypes.includes(type.id)}
+                      onChange={() => {
+                        setActiveTypes(
+                          prev =>
+                            prev.includes(type.id)
+                              ? prev.filter(t => t !== type.id) // remove
+                              : [...prev, type.id], // add
+                        );
+                      }}
+                      className="rounded-sm border-[#e2bdc7] text-[#b40064] focus:ring-[#b40064]/20 w-5 h-5"
                     />
                     <span className="text-[#5a3f48] group-hover:text-[#b40064] transition-colors">
-                      {filter.label}
+                      {type.label}
                     </span>
                   </label>
                 ))}
@@ -107,38 +152,68 @@ export default function Shop() {
           {/* Product Grid */}
           <div className="lg:col-span-9">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
-              {products.map(product => (
-                <div key={product.id} className="group cursor-pointer">
-                  <div className="relative overflow-hidden rounded-lg bg-[#f4f3f3] mb-6 aspect-4/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_12px_32px_rgba(90,63,72,0.06)] group-hover:-translate-y-2">
-                    <img
-                      alt={product.alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      src={product.image}
-                    />
-                    <button
-                      className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-md text-[#b40064] px-8 py-3 rounded-full font-label text-sm font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 active:scale-90"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                  <div className="px-2">
-                    <div className="flex justify-between items-start mb-1">
-                      <Link href={`/shop/${product.slug}`}>
-                        <h3 className="font-headline text-xl text-[#1a1c1c] hover:text-[#b40064] transition-colors">
-                          {product.name}
-                        </h3>
-                      </Link>
-                      <span className="text-[#b40064] font-bold">
-                        ${product.price.toFixed(2)}
-                      </span>
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map(product => (
+                  <div key={product.id} className="group cursor-pointer">
+                    <div className="relative overflow-hidden rounded-lg bg-[#f4f3f3] mb-6 aspect-4/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_12px_32px_rgba(90,63,72,0.06)] group-hover:-translate-y-2">
+                      <img
+                        alt={product.alt}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src={product.image}
+                      />
+                      <button
+                        className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-md text-[#b40064] px-8 py-3 rounded-full font-label text-sm font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 active:scale-90"
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
-                    <p className="text-[#5a3f48] text-sm font-body">
-                      {product.description}
-                    </p>
+                    <div className="px-2">
+                      <div className="flex justify-between items-start mb-1">
+                        <Link href={`/shop/${product.slug}`}>
+                          <h3 className="font-headline text-xl text-[#1a1c1c] hover:text-[#b40064] transition-colors">
+                            {product.name}
+                          </h3>
+                        </Link>
+                        <span className="text-[#b40064] font-bold">
+                          ${product.price.toFixed(2)}
+                        </span>
+                      </div>
+                      <p className="text-[#5a3f48] text-sm font-body">
+                        {product.description}
+                      </p>
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
+                  <div className="text-5xl mb-4"></div>
+
+                  <h3 className="text-2xl leading-relaxed font-body text-[#1a1c1c] mb-2">
+                    {isSearching
+                      ? `No results for "${searchQuery}"`
+                      : isFiltering
+                        ? 'No products match your filters'
+                        : 'No products available'}
+                  </h3>
+
+                  <p className="text-[#5a3f48] text-lg leading-relaxed font-body max-w-md">
+                    We couldn’t find any items matching your selection. Try
+                    adjusting your filters or search.
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      setActiveCategory('all');
+                      setActiveTypes([]);
+                      setSearchQuery('');
+                    }}
+                    className="mt-6 px-6 py-2 rounded-full bg-[#b40064] text-white text-sm font-label hover:opacity-90 transition"
+                  >
+                    Reset Filters
+                  </button>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>

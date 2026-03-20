@@ -1,9 +1,18 @@
+import Image from 'next/image';
+
 export default function Footer() {
   return (
     <footer className="bg-[#faf9f9] w-full rounded-t-[3rem] mt-20">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full max-w-7xl mx-auto">
         <div className="col-span-1 md:col-span-1">
-          <div className="font-serif text-2xl text-[#b40064] mb-6">Vanilla</div>
+          <div className="font-serif text-2xl text-[#b40064] mb-6">
+            <Image
+              src="/vanilla-logo.png"
+              alt={'logo'}
+              width={165}
+              height={64}
+            />
+          </div>
           <p className="text-[#8e6f78] font-body text-sm leading-relaxed mb-6">
             Handcrafting sweet memories since 2012. Our boutique patisserie
             focuses on artisanal quality and locally-sourced ingredients.
