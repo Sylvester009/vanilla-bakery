@@ -1,7 +1,18 @@
-import Link from 'next/link';
+'use client';
+
+import {useState} from 'react';
 import CheckoutForm from './CheckoutForm';
+import {useCart} from '@/contexts/CartContext';
 
 export default function CheckoutPage() {
+  const [shippingCost, setShippingCost] = useState(0);
+
+  const {items, getCartTotal} = useCart();
+
+  const subtotal = getCartTotal();
+  const total = subtotal + shippingCost;
+
+
   return (
     <div className="bg-[#faf9f9] text-[#1a1c1c] selection:bg-[#ffd9e3]">
       <main className="pt-32 pb-20 px-8 max-w-7xl mx-auto">
@@ -18,87 +29,75 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Left Column: Form */}
           <div className="lg:col-span-7 space-y-12">
-            <CheckoutForm />
+            <CheckoutForm setShippingCost={setShippingCost} />
           </div>
 
           {/* Right Column: Order Summary */}
           <aside className="lg:col-span-5 sticky top-32">
             <div className="bg-[#ffffff] p-10 rounded-xl shadow-[0_12px_32px_rgba(90,63,72,0.06)]">
               <h3 className="font-serif text-2xl mb-8 text-[#1a1c1c]">
-                Order Summary
+                Order Summary ({items.length})
               </h3>
               <div className="space-y-6 mb-10">
-                {/* Item 1 */}
-                <div className="flex gap-4">
-                  <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-[#f7dcdf]">
-                    <img
-                      alt="Assorted Macarons"
-                      className="w-full h-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf_KKQPcB8s6MNaMo24da0BV6wSVkyKeSJnvaVz-gwJGCp9EX7_gY5uYUzWFl_ngpkXw2gOMRgFK2KAlnZJ-ZNq8I10Mk46vTUs2sIKwQtgOZJVrH2y_gDgaYWD66KqxY-Cmx7X3q23AbFS3-fC3yEG3AOK5-ZYLjUS7cnzS4CZ6eDXYqqlFpTVmlKZE-tSwCZBrGfwA64x4s1tz6Hy3jgp0yvZjLqDWLB6K4NvQv3rcNeSr1xs5jMSkw60IPmZXjaNuzG9QaqATo"
-                    />
-                  </div>
-                  <div className="grow flex flex-col justify-center">
-                    <span className="font-medium text-[#1a1c1c]">
-                      Parisian Macaron Box (12)
-                    </span>
-                    <span className="text-sm text-[#5a3f48]">
-                      Signature Rose & Pistachio
-                    </span>
-                    <div className="flex justify-between mt-1">
-                      <span className="text-sm text-[#5a3f48]">Qty: 1</span>
-                      <span className="font-semibold text-[#b40064]">
-                        $34.00
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                {items.length === 0 ? (
+                  <p className="text-[#5a3f48] text-base text-center">Your cart is empty</p>
+                ) : (
+                  items.map(item => (
+                    <div key={item.id} className="flex gap-4">
+                      <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-[#f7dcdf]">
+                        <img
+                          alt={item.alt}
+                          className="w-full h-full object-cover"
+                          src={item.image}
+                        />
+                      </div>
 
-                {/* Item 2 */}
-                <div className="flex gap-4">
-                  <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-[#f7dcdf]">
-                    <img
-                      alt="Artisan Cookies"
-                      className="w-full h-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaY6XDdSMqaZHaGW99y1t7DMdFCEIAs63DERtnEWu_a6ZHSUvDOFe3TUliBTS_7FCli_fVPAjVgeqZMi1IHwwhr5GHpv9M_-flaRbF_NNY21oUfvYCw8IwBeajmiJCyHzAB0u5qF9vPJA0wBmp7QvIK1j2PEFvdjAbCZBLJKaAsiSTrLNnOhud5AYASJ0C1bCDR3jqOpwuX7AKni1L1y6Z6637Tt6BzfFwerKe8lkoaRtJAYKpOw-bd9MLDA9JRHDbHQCfPzfCMyo"
-                    />
-                  </div>
-                  <div className="grow flex flex-col justify-center">
-                    <span className="font-medium text-[#1a1c1c]">
-                      Vanilla Bean Shortbread
-                    </span>
-                    <span className="text-sm text-[#5a3f48]">
-                      Hand-stamped bundle
-                    </span>
-                    <div className="flex justify-between mt-1">
-                      <span className="text-sm text-[#5a3f48]">Qty: 2</span>
-                      <span className="font-semibold text-[#b40064]">
-                        $18.00
-                      </span>
+                      <div className="grow flex flex-col justify-center">
+                        <span className="font-medium text-[#1a1c1c]">
+                          {item.name}
+                        </span>
+
+                        <div className="flex justify-between mt-1">
+                          <span className="text-sm text-[#5a3f48]">
+                            Qty: {item.quantity}
+                          </span>
+
+                          <span className="font-semibold text-[#b40064]">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  ))
+                )}
               </div>
 
               <div className="space-y-4 pt-8 border-t border-[#e2bdc7]/20">
                 <div className="flex justify-between text-[#5a3f48]">
                   <span>Subtotal</span>
-                  <span>$52.00</span>
+                  <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#5a3f48]">
                   <span>Shipping</span>
-                  <span className="text-[#006c07]">Free</span>
+                  <span>
+                    {shippingCost === 0 || items.length === 0
+                      ? 'Pickup'
+                      : `$${shippingCost.toFixed(2)}`}
+                  </span>
                 </div>
-                <div className="flex justify-between text-[#5a3f48]">
+                {/* <div className="flex justify-between text-[#5a3f48]">
                   <span>Estimated Tax</span>
                   <span>$4.42</span>
-                </div>
+                </div> */}
                 <div className="flex justify-between text-xl font-serif pt-4 border-t border-[#e2bdc7]/10 text-[#1a1c1c]">
                   <span>Total</span>
-                  <span className="text-[#b40064] font-bold">$56.42</span>
+                  <span className="text-[#b40064] font-bold">
+                    ${total.toFixed(2)}
+                  </span>
                 </div>
               </div>
 
-              <button className="w-full mt-10 py-5 rounded-full bg-linear-to-br from-[#b40064] to-[#e1017e] text-[#ffffff] font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity active:scale-95 shadow-lg">
+              <button disabled={items.length === 0} className="w-full mt-10 py-5 rounded-full bg-linear-to-br from-[#b40064] to-[#e1017e] text-[#ffffff] font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity active:scale-95 shadow-lg">
                 Place Order
               </button>
               <p className="text-center text-[10px] text-[#5a3f48] mt-6 uppercase tracking-wider opacity-60">
