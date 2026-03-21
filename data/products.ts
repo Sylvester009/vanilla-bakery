@@ -83,7 +83,19 @@ export const products: Product[] = [
         category: "macarons",
         type: [],
         slug: "raspberry-rose-macaron-tower"
-    }
+    },
+    {
+        id: "7",
+        name: "Citron Bloom Tart7",
+        price: 9.00,
+        description: "Zesty curd with torched meringue",
+        detailedDescription: "A bright and refreshing tart filled with tangy lemon curd, topped with fluffy Italian meringue that's torched to perfection.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAx1zSw7gCzVA4DHoAjmnLi0l5C5D0G8TCkfbVAhLZowAnSHGVAcErq2YBDE1hHcXL8XSRtOvONAYTz-o8DKZc90Gv5RjoZeRHmVaeJ6HhEEKnIcGQDGKammIeDDsTTBHQphD0en7Un4X07JfDghW5I7g7vALi0BP8EHY3idu0OOKpCDKnWvpUEkTibRV_gOVCZJHXynUQ_oG1HaiHa-vAx-SZsmfm9TODXbvQkP_EzMTZ-I29vNbZmhsGLtodw3qbfl7wZxv-CAq4",
+        alt: "Small tartlet with toasted meringue peaks and lemon zest",
+        category: "tarts",
+        type: [],
+        slug: "citron-bloom-tart"
+    },
 ];
 
 export interface TypeFilter {

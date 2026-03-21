@@ -128,24 +128,7 @@ export default async function ProductPage({params}: ProductPageProps) {
 
             {/* Interactive Section */}
             <div className="space-y-8">
-              <div>
-                <label className="block text-sm font-label font-bold text-[#6d595c] mb-3">
-                  Quantity
-                </label>
-                <div className="inline-flex items-center bg-[#e9e8e8] rounded-full p-1">
-                  <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#ffffff] transition-colors">
-                    <span className="material-symbols-outlined text-sm">
-                      remove
-                    </span>
-                  </button>
-                  <span className="w-12 text-center font-bold">1</span>
-                  <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#ffffff] transition-colors">
-                    <span className="material-symbols-outlined text-sm">
-                      add
-                    </span>
-                  </button>
-                </div>
-              </div>
+              
               <div className="flex flex-col gap-4">
                 <AddToCartButton product={product} />
                 <Link href="/checkout">
