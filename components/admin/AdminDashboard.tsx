@@ -40,8 +40,7 @@ export const AdminDashboard = () => {
                   key={product.id}
                   id={product.id}
                   name={product.name}
-                  priceMin={product.priceMin}
-                  priceMax={product.priceMax}
+                  price={product.price}
                   image={product.image}
                   onEdit={handleEditProduct}
           onDelete={() => handleDeleteProduct}

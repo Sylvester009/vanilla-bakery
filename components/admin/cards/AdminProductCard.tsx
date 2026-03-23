@@ -6,8 +6,7 @@ import Button from "@/components/molecules/Button";
 interface AdminCardProps {
   id: string;
   name: string;
-  priceMin: number;
-  priceMax: number;
+  price: number;
   image: string;
   onEdit: () => void;
   onDelete: () => void;
@@ -15,8 +14,7 @@ interface AdminCardProps {
 
 export default function AdminProductCard( {id,
   name,
-  priceMin,
-  priceMax,
+  price,
   image,onEdit, onDelete}: AdminCardProps) {
 
 
@@ -29,7 +27,7 @@ export default function AdminProductCard( {id,
       <h3 className={`${pacifico.className} text-[#E50A81] text-xl text-center`}>{name}</h3>
       
       <p className="text-center text-sm font-medium text-gray-700 my-2">
-        ₦ {priceMin.toLocaleString()} – ₦ {priceMax.toLocaleString()}
+        ₦ {price.toLocaleString()}
       </p>
 
       <div className="flex gap-2 mt-auto pt-4">
