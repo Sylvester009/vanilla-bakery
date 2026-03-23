@@ -1,0 +1,13 @@
+
+import { Pacifico, Poppins } from "next/font/google";
+
+export const pacifico = Pacifico({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
