@@ -22,7 +22,7 @@ export default function AdminProductCard( {id,
 
 
   return (
-    <div className="rounded-xl p-5 bg-white shadow-md border border-gray-100 flex flex-col group">
+    <div key={id} className="rounded-xl p-5 bg-white shadow-md border border-gray-100 flex flex-col group">
       <div className="relative w-full aspect-4/3 mb-4 overflow-hidden rounded-lg">
         <Image src={image} alt={name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
       </div>
