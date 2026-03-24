@@ -26,7 +26,7 @@ const Button = ({
   const baseStyles = "relative flex items-center gap-2 justify-center px-6 py-2.5 rounded-lg font-medium transition-all duration-300 active:scale-95 disabled:opacity-70 disabled:pointer-events-none cursor-pointer";
 
   const variants = {
-    solid: "bg-pink-600 text-white hover:bg-pink-700 shadow-sm",
+    solid: "bg-pink-700 text-white hover:bg-pink-800 shadow-sm",
     outline: "border-2 border-pink-600 text-pink-600 hover:bg-pink-50",
     delete: "bg-red-600 text-white hover:bg-red-700 shadow-sm",
   };
