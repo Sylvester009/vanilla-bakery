@@ -1,82 +1,129 @@
-import Link from "next/link";
-import { Instagram, Facebook, Twitter, Send } from "lucide-react";
+import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FFD2F5]/55 mt-20">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-
-        {/* Brand */}
-        <div>
-          <h2 className="text-2xl font-bold text-pink-600">
-            Vanilla
-          </h2>
-
-          <p className="text-sm mt-3 text-gray-700">
-            vanilla.spiceco@gmail.com
+    <footer className="bg-[#faf9f9] w-full rounded-t-[3rem] mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full max-w-7xl mx-auto">
+        <div className="col-span-1 md:col-span-1">
+          <div className="font-serif text-2xl text-[#b40064] mb-6">
+            <Image
+              src="/vanilla-logo.png"
+              alt={'logo'}
+              width={165}
+              height={64}
+            />
+          </div>
+          <p className="text-[#8e6f78] font-body text-sm leading-relaxed mb-6">
+            Handcrafting sweet memories since 2012. Our boutique patisserie
+            focuses on artisanal quality and locally-sourced ingredients.
           </p>
-
-          <p className="text-sm text-gray-700">
-            08000000000
-          </p>
-
-          <p className="text-sm text-gray-700">
-            No. Jobs Chapel
-          </p>
-
-          {/* Social Icons */}
-          <div className="flex gap-3 mt-4">
-            <Instagram className="w-5 h-5 cursor-pointer" />
-            <Facebook className="w-5 h-5 cursor-pointer" />
-            <Twitter className="w-5 h-5 cursor-pointer" />
+          <div className="flex gap-4">
+            <span className="material-symbols-outlined text-[#b40064] hover:scale-110 transition-transform cursor-pointer">
+              social_leaderboard
+            </span>
+            <span className="material-symbols-outlined text-[#b40064] hover:scale-110 transition-transform cursor-pointer">
+              photo_camera
+            </span>
+            <span className="material-symbols-outlined text-[#b40064] hover:scale-110 transition-transform cursor-pointer">
+              mail
+            </span>
           </div>
         </div>
-
-        {/* Quick Links */}
         <div>
-          <h3 className="font-semibold mb-4">Quick Links</h3>
-
-          <ul className="space-y-2 text-gray-700">
+          <h6 className="font-headline font-bold text-[#1a1c1c] mb-6">
+            Quick Links
+          </h6>
+          <ul className="space-y-4 font-label text-sm">
             <li>
-              <Link href="/">Home</Link>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Shop All
+              </a>
             </li>
             <li>
-              <Link href="/shop">Shop</Link>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Our Story
+              </a>
             </li>
             <li>
-              <Link href="/cart">Cart</Link>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Bespoke Inquiries
+              </a>
             </li>
           </ul>
         </div>
-
-        {/* Newsletter */}
         <div>
-          <h3 className="font-semibold mb-4">
-            Subscribe to our newsletter
-          </h3>
-
-          <p className="text-sm text-gray-700 mb-3">
-            To get informed about our latest offers.
-          </p>
-
-          <div className="flex items-center bg-white rounded-full overflow-hidden">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 px-4 py-2 outline-none"
-            />
-
-            <button className="bg-pink-500 text-white px-4 py-2">
-              <Send className="w-4 h-4" />
-            </button>
-          </div>
+          <h6 className="font-headline font-bold text-[#1a1c1c] mb-6">
+            Support
+          </h6>
+          <ul className="space-y-4 font-label text-sm">
+            <li>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Shipping &amp; Returns
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-[#8e6f78] hover:text-[#b40064] hover:underline underline-offset-4 decoration-[#ffb0ca] transition-all"
+                href="#"
+              >
+                FAQ
+              </a>
+            </li>
+          </ul>
         </div>
-
+        <div>
+          <h6 className="font-headline font-bold text-[#1a1c1c] mb-6">
+            Our Studio
+          </h6>
+          <p className="text-[#8e6f78] text-sm leading-loose">
+            123 Confectioner's Way
+            <br />
+            Pastry District, NY 10012
+            <br />
+            <span className="block mt-4 font-bold text-[#b40064]">
+              Tue - Sat: 9am - 6pm
+            </span>
+          </p>
+        </div>
       </div>
-
-      {/* Bottom */}
-      <div className="text-center text-xs text-[#E50A81] pb-6">
-        © 2025 Vanilla Bakery — Baked with love in Every Layer 🍰
+      <div className="border-t border-[#e9e8e8] py-8 text-center text-[#8e6f78] font-label text-xs tracking-widest px-8">
+        © 2024 Vanilla Digital Patisserie. Handcrafted with love.
       </div>
     </footer>
   );
