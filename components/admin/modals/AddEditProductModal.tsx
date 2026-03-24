@@ -1,6 +1,6 @@
 'use client';
 import Button from '@/components/molecules/Button';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 
 export interface Product {

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client';
 
 import Link from 'next/link';
@@ -15,7 +16,7 @@ export default function Header() {
   const inactiveClass = 'text-[#5a3f48] hover:text-[#b40064] transition-colors';
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 glass-nav shadow-sm">
+    <nav className="sticky top-0 w-full z-50 bg-white glass-nav shadow-sm">
       <div className="flex justify-between items-center px-8 py-4 w-full max-w-screen-2xl mx-auto">
         <Link
           href="/"
