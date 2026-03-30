@@ -6,9 +6,18 @@ import {useState} from 'react';
 
 interface AddToCartButtonProps {
   product: Product;
+  selections: {
+    size?: { label: string; price: number };
+    flavors?: string[];
+    options?: Record<string, string>;
+    price: number;
+  };
 }
 
-export default function AddToCartButton({product}: AddToCartButtonProps) {
+export default function AddToCartButton({
+  product,
+  selections,
+}: AddToCartButtonProps) {
   const [quantity, setQuantity] = useState(1);
 
   const increase = () => setQuantity(prev => prev + 1);
@@ -22,7 +31,7 @@ export default function AddToCartButton({product}: AddToCartButtonProps) {
       {
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: selections.price,
         image: product.image,
         alt: product.alt,
         slug: product.slug,

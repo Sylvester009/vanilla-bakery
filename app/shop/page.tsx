@@ -29,7 +29,7 @@ export default function Shop() {
     addToCart({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: product.basePrice,
       image: product.image,
       alt: product.alt,
       slug: product.slug,
@@ -293,7 +293,7 @@ export default function Shop() {
                           </h3>
                         </Link>
                         <span className="text-[#b40064] font-bold">
-                          ${product.price.toFixed(2)}
+                          ${product.basePrice.toFixed(2)}
                         </span>
                       </div>
                       <p className="text-[#5a3f48] text-sm font-body">
